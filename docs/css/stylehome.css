@@ -73,7 +73,7 @@ header {
     */
 }
 
-@media (max-width: 768px) { /* Adjust the breakpoint as needed */
+@media (max-width: 800px) { /* Adjust the breakpoint as needed */
   .header {
       background: url('https://iili.io/JAQZh2s.jpg') no-repeat center center; 
       background-size: cover;
