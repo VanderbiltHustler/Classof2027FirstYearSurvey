@@ -217,11 +217,11 @@ nav ul {
     margin: 0;
     padding: 10px;
     display: flex;
-    justify-content: space-between; /* This will evenly distribute the items horizontally */
-    align-items: center; /* This will vertically center align the items */
-    flex-flow: row wrap;
-    -webkit-align-items: center;
-    align-items: center;
+    justify-content: space-between;
+    margin-left: auto; 
+    /*flex-flow: row wrap; */
+    /*-webkit-align-items: center; */
+    /*align-items: center; */
 }
 
 li.logo p {
@@ -300,7 +300,7 @@ ul div {
     background-color: #F2EEE3;
     min-width: 160px;
     z-index: 1;
-    top: 22px;
+    top: 35px;
 
 }
 
@@ -310,14 +310,12 @@ ul div {
 }
 
 .item.dropdown {
-    margin-left: auto; /* Push "THE SURVEY" to the right */
-    margin: 0; /* Reset margins */
-    padding: 0; /* Reset paddings */
+    margin-right: -250px;
+    justify-content: space-between;
 }
 
 .item.dropdown h9 {
-    margin: 0; /* Reset margins */
-    padding: 0; /* Reset paddings */
+    justify-content: space-between;
 }
 
 
