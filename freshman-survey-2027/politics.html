@@ -17,7 +17,7 @@
     <!-- see how bootstrap works: https://getbootstrap.com/docs/5.1/getting-started/introduction/ -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> <!-- Bootstrap — for aligning text columns -->
     <link rel="stylesheet" href="css/ids.css"> <!-- IDS stylesheet — default IDS styles -->
-    <link rel="stylesheet" href="css/stylecollegelife.css"> <!-- Local stylesheet — put all your design choices here -->
+    <link rel="stylesheet" href="css/stylepolitics.css"> <!-- Local stylesheet — put all your design choices here -->
 
     <!-- Font Awesome — for the social media icons and hamburger menu icon -->
     <script src="https://kit.fontawesome.com/ea52966d59.js" crossorigin="anonymous"></script>    
@@ -60,28 +60,41 @@
 
         <!-- Navbar -->
             <!-- Navbar -->
-    <nav>
-        <ul>
-            <li class="logo">
-                <a href="https://www.vanderbilthustler.com">
-                    <img src="https://iili.io/JAYjzEG.png" alt="JAYjzEG.png" border="0">
-                </a>
-                <a href="home.html"><h8>| Class of 2027 Freshman Survey</h8></a> <!-- Replace "your-link-here" with the actual link --> 
-            </li>
-            <li class="toggle">
-                <i class="fas fa-bars fa-lg"></i>
-            </li>
-            <li class="item">
-                <h9> THE SURVEY&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h9>
-                <h9> ABOUT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </h9>
-            </li>
-        </ul>
-    </nav>
+            <nav>
+                <ul>
+                    <li class="logo">
+                        <a href="https://www.vanderbilthustler.com">
+                            <img src="https://iili.io/JAYjzEG.png" alt="JAYjzEG.png" border="0">
+                        </a>
+                        <a href="home.html"><h8>| Class of 2027 Freshman Survey</h8></a>
+                    </li>
+                    <li class="toggle">
+                        <i class="fas fa-bars fa-lg"></i>
+                    </li>
+                    <li class="item dropdown">
+                        <h9>THE SURVEY</h9>
+                        <div class="dropdown-content">
+                        <a href="demographics.html"><h9>DEMOGRAPHICS</h9></a>
+                        <a href="high-school.html"><h9>HIGH SCHOOL</h9></a>
+                        <a href="admissions.html"><h9>ADMISSIONS</h9></a>
+                        <a href="college-life.html"><h9>COLLEGE LIFE</h9></a>
+                        <a href="politics.html"><h9>POLITICS</h9></a>
+                        <a href="lifestyle.html"><h9>LIFESTYLE</h9></a>
+                        </div>
+                    </li>
+                    <li class="item">
+                        <a href="methodology.html">
+                            <h9> ABOUT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </h9>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
 
         <!-- Headline, subhed -->
         <!-- feel free to change this up — you don't need it to have data scroll speed, 
         doesn't have to be centered, doesn't have to be 2 lines, etc. (see header options in css directions for more inspo) -->
-        <h1 data-scroll-speed="2">COLLEGE LIFE</h1>
+        <h1 data-scroll-speed="2">POLITICS</h1>
 
     </header> 
 
@@ -93,18 +106,18 @@
             <div class="col-md-6 story"> 
     
                 <p>
-                    50% of the freshman class applied to the college of arts and sciences, but 9% plan to switch out of it. In terms of pre-professional tracks, 21% report being pre-med and 14% report being pre-law. 
+                    63% of the Class of 2027 identified as liberal in some way, while 21% identified as neutral and 16% identified as conservative in some way. This means the Class of 2027 is more conservative than the outgoing senior class of 2023. However, the Class of 2023 became more liberal during their studies, going from 65% liberal to 76% liberal.
                 </p>
                 <p>
-                    “I applied for the college of arts and sciences but plan on transferring to Peabody because I want to add HOD as a double major and Peabody has a less extensive liberal core,” first-year Griffin Unger said. “I’m adding HOD as a double major to avoid AXLE.”
+                    46% of the Class of 2027 votes in their home state or country, while 9% vote in Tennessee. 12% are not eligible to vote, either because of age or citizenship restrictions. This represents a much higher turnout than the national average for 18-29 year olds, of which 23% voted in the 2022 elections.
                 </p>
 
                 <section class="box-container">
-                    <div class="box" onclick="changeChart0('UZFSb', '1');">
-                        <h5>COLLEGE SWITCH</h5>
+                    <div class="box" onclick="changeChart0('EccNF', '1');">
+                        <h5>IDEOLOGY</h5>
                     </div>
-                    <div class="box" onclick="changeChart0('41nX4','1');">
-                        <h5>PRE-PROFESSIONAL TRACK</h5>
+                    <div class="box" onclick="changeChart0('AyQal','1');">
+                        <h5>VOTER TURNOUT</h5>
                     </div>
                 </section>
                 
@@ -115,12 +128,23 @@
                 </section>
 
                 <p>
-                    37% of the class of 2027 wish they lived in Hank Ingram House, whereas only 1% wish they lived in Memorial House. In reality, about 19% of respondents live in Hank Ingram House and 4% live in Memorial. 
+                    The most popular campus political policy was divesting from fossil fuels, of which 58% of students supported. The least popular political position was that Greek life should be abolished, which only 16% of students supported. This is in sharp contrast with the outgoing senior Class of 2023, of which 44% of students supported abolishing Greek life. About a fifth of students thought administration should take stances on political issues.
+                </p>
+
+                <p>
+                    About 41% of students support affirmative action, while only 12% support legacy admissions. The Class of 2028 is the first since the implementation of affirmative action where the policy will not be considered in Vanderbilt’s admission process.
+                </p>
+                
+                <p>
+                    The most popular political position is stricter gun control, of which 81% of first years support. 76% support expanded abortion access and 55% support gender-affirming healthcare for minors.
                 </p>
                 
                 <section class="box-container">
-                    <div class="box" onclick="changeChart0('GUtc4','2');">
-                        <h5>COMMONS HOUSE</h5>
+                    <div class="box" onclick="changeChart0('6Y5TG','2');">
+                        <h5>CAMPUS ISSUES</h5>
+                    </div>
+                    <div class="box" onclick="changeChart0('FdL64','2');">
+                        <h5>POLITICAL ISSUES</h5>
                     </div>
                 </section>
                 
@@ -131,46 +155,24 @@
                 </section>
 
                 <p>
-                    46% of the class of 2027 does not receive need-based financial aid. 20% of survey respondents receive either a partial or full tuition merit scholarship. 34% of students that have a household income of $300,000 - $499,999 receive either a partial or full tuition merit scholarship, as opposed to 25% of students that have a household income of under $50,000. 
+                    Opinions on political issues were highly divided based on the political ideology of the student, with an approximately 50-point margin separating conservative and liberal students on each issue.
+                </p>
+                <p>
+                    Non-legacy students were more likely to oppose using legacy admissions in the admissions (79%) projects than students who had siblings, parents or extended family who also attended Vanderbilt (55%).
                 </p>
 
                 <section class="box-container">
-                    <div class="box" onclick="changeChart0('tRDVo','3');">
-                        <h5>FINANCIAL AID</h5>
+                    <div class="box" onclick="changeChart0('1MWi8','3');">
+                        <h5>POLITICAL ISSUES/POLITICAL IDEOLOGY</h5>
                     </div>
-                    <div class="box" onclick="changeChart0('QmmOj','3');">
-                        <h5>MERIT SCHOLARS</h5>
-                    </div>
-                    <div class="box" onclick="changeChart0('0nSLR','3');">
-                        <h5>MERIT SCHOLARS/HOUSEHOLD INCOME</h5>
+                    <div class="box" onclick="changeChart0('HdRhS','3');">
+                        <h5>LEGACY STATUS/LEGACY ADMISSIONS</h5>
                     </div>
                 </section>
                 
                 <section class="graph-container">
                     <figure class="big-image">
                         <div class="chart-container" id="chartContainer3"><script type="text/javascript" charset="utf-8"></script></div>
-                    </figure>
-                </section>
-
-                <p>
-                    35% of White survey respondents plan to participate in IFC or Panhellenic recruitment — 14% and 21% respectively. Only 8% of Asian survey respondents plan to participate in IFC or Panhellenic recruitment, with 6% of them planning to participate in Panhellenic recruitment.
-                </p>
-                <p>
-                    “I do plan on joining Greek life for both a sense of community and parties,” Unger said. “Honestly, I don’t really know what Greek life entails, I’m kind of just along for the ride. But I love not knowing what’s happening — it keeps things exciting.”
-                </p>
-
-                <section class="box-container">
-                    <div class="box" onclick="changeChart0('nnGRU','4');">
-                        <h5>GREEK LIFE/GENDER</h5>
-                    </div>
-                    <div class="box" onclick="changeChart0('u4exL','4');">
-                        <h5>GREEK LIFE/RACE</h5>
-                    </div>
-                </section>
-                
-                <section class="graph-container">
-                    <figure class="big-image">
-                        <div class="chart-container" id="chartContainer4"><script type="text/javascript" charset="utf-8"></script></div>
                     </figure>
                 </section>
 
@@ -193,11 +195,9 @@
 
     function firstGraph() {
         // Call the changeChart function with the chartId for 'GENDER'
-        changeChart0('UZFSb', '1');
-        changeChart0('GUtc4', '2');
-        changeChart0('tRDVo', '3');
-        changeChart0('nnGRU', '4');
-
+        changeChart0('EccNF', '1');
+        changeChart0('6Y5TG', '2');
+        changeChart0('1MWi8', '3');
     }
 
     window.onload = firstGraph();
