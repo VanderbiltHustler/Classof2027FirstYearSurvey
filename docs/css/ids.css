@@ -503,7 +503,7 @@ No media query for `xs` since this is the default */
 }
 
 /* Medium devices (tablets, 768px and up) */
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
     h1 { /* first headline */
         padding: 35vh 0 0.75em;
         font-size: 65px;
@@ -533,6 +533,13 @@ No media query for `xs` since this is the default */
         margin-left: -10; /* Potential issue: Missing 'px' or other unit */
     }
 
+    .item.dropdown {
+        display: flex;            /* Make it a flex container */
+        justify-content: space-between; /* Distribute items equally between edges */
+        align-items: center;      /* Center items vertically */
+        margin-right: 10px;       /* Add some right margin */
+        /* Additional styles as needed */
+    }
     
     
     /* Hide menu toggle */
