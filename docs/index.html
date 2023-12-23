@@ -66,7 +66,7 @@
                 <a href="https://www.vanderbilthustler.com">
                     <img src="https://iili.io/JAYjzEG.png" alt="JAYjzEG.png" border="0">
                 </a>
-             <a href="index.html"><h8>| Class of 2027 Freshman Survey</h8></a>
+             <a href="index.html" id="surveyLink"><h8>| Class of 2027 Freshman Survey</h8></a>
             <!-- </li>
             <li class="toggle">
                 <i class="fas fa-bars fa-lg"></i>
@@ -89,6 +89,16 @@
             </li>  -->
         </ul>
     </nav>
+
+    <script>
+        // Get the anchor element by its ID
+        var surveyLink = document.getElementById('surveyLink');
+
+        // Check if the screen width is less than or equal to 768px (for mobile devices)
+        if (window.innerWidth <= 768) {
+            surveyLink.innerHTML = '<h8> | Home </h8>'; // Change the text content
+        }
+    </script>
 
         <!-- Headline, subhed -->
         <!-- feel free to change this up — you don't need it to have data scroll speed, 
