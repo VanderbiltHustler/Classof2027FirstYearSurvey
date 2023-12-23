@@ -3,7 +3,7 @@
     These are the default styles for an IDS buildout.
     It includes navigation, typography, spacing, colors, photo placement, etc.
     Any css styles specific to your story's layout should be changed in the style.css file!
-    ********** DON'T CHANGE STYLES HERE — CHANGE STYLE.CSS FILE **********
+    ********** DON'T CHANGE STYLES HERE — CHANGE STYLE.CSS FILE **********
 */
 
 /* natural box model */
@@ -47,21 +47,20 @@ p {
 
 
 }
-h1, h2, h3, h11, .bylines p, footer p {
+h1, h2, h3, .bylines p, footer p {
     font-family: 'Libre Franklin', sans-serif;
     font-weight: 850;
 }
-h1, h2, h11 {
+h1, h2 {
     text-align: center;
     margin: 0 auto;
     max-width: 80%;
     color: white;
 }
-h1, h11 { /* first headline */
+h1 { /* first headline */
     padding: 35vh 0 0.75em;
     font-size: 128px;
 }
-
 h2 { /* second headline */
     padding: 20vh 0 0.75em;
     font-family: 'Georgia', serif;
@@ -139,6 +138,8 @@ h10 { /* text box head */
     text-align: center;
     color: #D6B464;
 }
+
+
 
 p { /* body copy */
     font-size: 16px;
@@ -600,5 +601,3 @@ No media query for `xs` since this is the default */
 @media (min-width: 1200px) {
 
 }
-
-

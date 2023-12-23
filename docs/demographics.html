@@ -25,20 +25,20 @@
     <!-- TO DO: SOCIAL CARDS — editors will help you with this, don't worry about it for now -->
     <!-- BUT DONT FORGET ABOUT IT or your dom image won't show up on social media/texting -->
     <!--Open Graph Card for social display (Be sure to change these!)-->
-    <meta property="og:url" content="http://vanderbilthustler.features.com/FreshmanSurvey2027/demographics"/>
+    <meta property="og:url" content="http://specials.idsnews.com/url"/> <!-- URL (specials.idsnews.com/blah-blah-blah) -->
     <meta property="og:type" content="article"/>
-    <meta property="og:title" content="Class of 2027 Freshman Survey | Demographics"/> <!-- headline -->
-    <meta property="og:description" content="The Hustler surveys the Class of 2027"/> <!-- abstract -->
-    <meta property="og:site_name" content="The Hustler surveys the Class of 2027">
-    <meta property="og:image" content="https://iili.io/JAaBKSS.jpg"/> <!-- link to dominant image -->
+    <meta property="og:title" content="Headline"/> <!-- headline -->
+    <meta property="og:description" content="Abstract"/> <!-- abstract -->
+    <meta property="og:site_name" content="IDS News">
+    <meta property="og:image" content=""/> <!-- link to dominant image -->
 
     <!--Twitter Social Card (Be sure to change these!)-->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@VandyHustler">
-    <meta name="twitter:creator" content="@VandyHustler">
-    <meta name="twitter:title" content="Class of 2027 Freshman Survey"> <!-- headline -->
-    <meta name="twitter:description" content="The Hustler surveys the Class of 2027"> <!-- abstract -->
-    <meta name="twitter:image" content="https://iili.io/JAaBKSS.jpg"> <!-- dominant image -->
+    <meta name="twitter:site" content="@idsnews">
+    <meta name="twitter:creator" content="@idsnews">
+    <meta name="twitter:title" content="Headline"> <!-- headline -->
+    <meta name="twitter:description" content="Abstract"> <!-- abstract -->
+    <meta name="twitter:image" content=""> <!-- dominant image -->
 
 </head>
 <body>
@@ -55,6 +55,7 @@
     </script>
     <!-- End Google Tag Manager -->
 
+
     <!--Header-->
   <header>
 
@@ -65,7 +66,8 @@
                     <li class="logo">
                         <a href="https://www.vanderbilthustler.com">
                             <img src="https://iili.io/JAYjzEG.png" alt="JAYjzEG.png" border="0">
-                        <a href="index.html"><h8>| Home</h8></a>
+                        </a>
+                        <a href="index.html" id="surveyLink"><h8>| Class of 2027 Freshman Survey</h8></a>
                     </li>
                     <li class="toggle">
                         <i class="fas fa-bars fa-lg"></i>
@@ -89,6 +91,16 @@
                 </ul>
             </nav>
 
+
+            <script>
+                // Get the anchor element by its ID
+                var surveyLink = document.getElementById('surveyLink');
+        
+                // Check if the screen width is less than or equal to 768px (for mobile devices)
+                if (window.innerWidth <= 768) {
+                    surveyLink.innerHTML = '<h8> | Home </h8>'; // Change the text content
+                }
+            </script>
 
         <!-- Headline, subhed -->
         <!-- feel free to change this up — you don't need it to have data scroll speed, 
