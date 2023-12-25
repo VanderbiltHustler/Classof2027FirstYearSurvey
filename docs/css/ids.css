@@ -247,10 +247,10 @@ li.logo span {
 }
 li.item {
     font-size: 18px;
-    text-align: right;
+    text-align: left;
 }
 li.item a {
-    margin-top: 0em; /* Adjust this value to move the "ABOUT" text up */
+    margin-top: 0.2em; /* Adjust this value to move the "ABOUT" text up */
 
 }
 li.toggle {
@@ -314,10 +314,6 @@ ul div {
 }
 
 
-
-
-
-
 /* Add some style to the dropdown links */
 .dropdown-content a {
     color: black;
@@ -346,6 +342,11 @@ section p:first-child {
 }
 .bylines {
     padding-top: 6.5px;
+}
+
+.chart-container {
+    max-width: 500px;
+    margin: 0 auto; /* This will center the container if its width is less than the parent container */
 }
 
 /* 
@@ -388,7 +389,7 @@ figcaption {
     width: 80%;
     text-align: left;
 }
-/* youtube embed styles */
+/* youtube embed styles 
 .embed-container { 
     position: relative; 
     padding-bottom: 56.25%; 
@@ -402,7 +403,7 @@ figcaption {
     left: 0; 
     width: 100%; 
     height: 100%; 
-}
+}*/
 /* pulled quotes */
 .pull-quote-center {
     width: 100%;
@@ -495,6 +496,12 @@ footer {
     padding-bottom: 30px;
 }
 
+.graph-container {
+    width: 100%; /* or specify a fixed width in pixels */
+    height: auto; /* or specify a fixed height in pixels */
+    /* other styles */
+}
+
 /* MEDIA QUERIES FROM SMALLEST TO LARGEST = MOBILE FIRST */
 /* Extra small devices (portrait phones, less than 576px)
 No media query for `xs` since this is the default */
@@ -505,17 +512,22 @@ No media query for `xs` since this is the default */
 }
 
 /* Medium devices (tablets, 768px and up) */
-@media (max-width: 1000px) {
+@media (max-width: 768px) {
+    .chart-container {
+        max-width: 300px;
+        margin: 0 auto; /* This will center the container if its width is less than the parent container */
+    }
+
     h1 { /* first headline */
         padding: 35vh 0 0.75em;
-        font-size: 65px;
-        line-height: 68px;
+        font-size: 50px;
+        line-height: 50px;
         overflow-wrap: break-word;
     }
 
     h2 { /* second headline */
         padding: 10vh 0 0.75em;
-        margin-top: -5.6em; /* Adjust the value to move the text up */
+        margin-top: -5em; /* Adjust the value to move the text up */
         font-size: 20px;
     }
 
@@ -532,15 +544,38 @@ No media query for `xs` since this is the default */
         font-size: 18px;
         line-height: 18px;
         text-align: left;
-        margin-left: -10; /* Potential issue: Missing 'px' or other unit */
+        margin-left: 0; /* Potential issue: Missing 'px' or other unit */
+        padding-left: 0;  /* If you want to ensure it's against the left edge, set padding-left to 0 */
+    }
+
+    nav ul {
+        margin: 0;
+        padding: 10px;
+        display: flex;
+        justify-content: left; /* This will evenly distribute the items horizontally */
+        align-items: left; /* This will vertically center align the items */
+        flex-flow: row nowrap; /* Prevents items from wrapping onto the next line */
+        -webkit-align-items: center;
+    }
+
+    li.item a {
+        margin-top: 0em; /* Adjust this value to move the "ABOUT" text up */
+    
     }
 
     .item.dropdown {
         display: flex;            /* Make it a flex container */
-        justify-content: space-between; /* Distribute items equally between edges */
+        justify-content: left; /* Distribute items equally between edges */
         align-items: center;      /* Center items vertically */
         margin-right: 10px;       /* Add some right margin */
+        margin-left: 0px; /* Push "THE SURVEY" to the right */
+        margin: 0px;
         /* Additional styles as needed */
+    }
+
+    li.item {
+        font-size: 18px;
+        text-align: left;
     }
 
     /* photos */

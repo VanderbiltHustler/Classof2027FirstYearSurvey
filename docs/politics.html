@@ -65,13 +65,13 @@
                     <li class="logo">
                         <a href="https://www.vanderbilthustler.com">
                             <img src="https://iili.io/JAYjzEG.png" alt="JAYjzEG.png" border="0">
-                        <a href="index.html"><h8>| Class of 2027 Freshman Survey</h8></a>
+                        <a href="index.html" id="surveyLink"><h8>| Class of 2027 Freshman Survey</h8></a>
                     </li>
                     <li class="toggle">
                         <i class="fas fa-bars fa-lg"></i>
                     </li>
                     <li class="item dropdown">
-                        <h9>THE SURVEY&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h9>
+                        <h9 id="homeLabel">THE SURVEY&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h9>
                         <div class="dropdown-content">
                         <a href="demographics.html"><h9>DEMOGRAPHICS</h9></a>
                         <a href="high-school.html"><h9>HIGH SCHOOL</h9></a>
@@ -83,12 +83,11 @@
                     </li>
                     <li class="item">
                         <a href="methodology.html">
-                            <h9> ABOUT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </h9>
+                            <h9 id="aboutLabel"> ABOUT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </h9>
                         </a>
                     </li>
                 </ul>
             </nav>
-
 
         <!-- Headline, subhed -->
         <!-- feel free to change this up — you don't need it to have data scroll speed, 
@@ -97,6 +96,35 @@
 
     </header> 
 
+    <script>
+        // Get the anchor element by its ID
+        var surveyLink = document.getElementById('surveyLink');
+    
+        // Check if the screen width is less than or equal to 768px (for mobile devices)
+        if (window.innerWidth <= 768) {
+            surveyLink.innerHTML = '<h8> | Home </h8>'; // Change the text content
+        }
+    </script>
+    
+    <script>
+        // Get the anchor element by its ID
+        var surveyLink = document.getElementById('aboutLabel');
+    
+        // Check if the screen width is less than or equal to 768px (for mobile devices)
+        if (window.innerWidth <= 768) {
+            surveyLink.innerHTML = '<h9> ABOUT&nbsp; </h9>'; // Change the text content
+        }
+    </script>
+
+    <script>
+        // Get the anchor element by its ID
+        var surveyLink = document.getElementById('homeLabel');
+
+        // Check if the screen width is less than or equal to 768px (for mobile devices)
+        if (window.innerWidth <= 768) {
+            surveyLink.innerHTML = '<h9> THE SURVEY&nbsp; </h9>'; // Change the text content
+        }
+    </script>
 
     <!-- main article -->
     <main>
