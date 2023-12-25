@@ -126,7 +126,7 @@ h9 { /* navbar */
     font-weight: 400;
     font-size: 18px;
     line-height: 18px;
-    text-align: center;
+    top: 5.8px;
 }
 
 h10 { /* text box head */
@@ -213,11 +213,11 @@ nav ul {
     margin: 0;
     padding: 10px;
     display: flex;
-    justify-content: space-between;
-    margin-left: auto; 
-    /*flex-flow: row wrap; */
-    /*-webkit-align-items: center; */
-    /*align-items: center; */
+    justify-content: space-between; /* This will evenly distribute the items horizontally */
+    align-items: center; /* This will vertically center align the items */
+    flex-flow: row wrap;
+    -webkit-align-items: center;
+    align-items: center;
 }
 
 li.logo p {
@@ -250,10 +250,11 @@ li.item {
     text-align: right;
 }
 li.item a {
-    margin-top: 0.8em;
+    margin-top: 0em; /* Adjust this value to move the "ABOUT" text up */
+
 }
-/*li.toggle {
-    /* show menu bar (toggle class) 
+li.toggle {
+    /* show menu bar (toggle class) */
     display: block;
     cursor: pointer;
 
@@ -261,7 +262,7 @@ li.item a {
     margin-right: 10px;
     color: #F2EEE3;
     font-size: 16px;
-} */
+}
 nav a {
     /* so the ENTIRE item is clickable */
     display: block;
@@ -273,20 +274,20 @@ nav a {
     opacity: 0.9;
 }
 /* hide all list items **that aren't logo or toggle** */
-ul li:not(.logo):not(.toggle) {
+/*ul li:not(.logo):not(.toggle) {
     display: none;
 }
 ul div {
     display: none;
 }
-/* reveal hidden items (on toggle) */
-/* force this display to take precedence and be more "!important" */
-/* to display properly, also set the width to 100% */
+/* reveal hidden items (on toggle) 
+/* force this display to take precedence and be more "!important" 
+/* to display properly, also set the width to 100% 
 .show {
     display: block !important;
     width: 100%;
     margin-bottom: 8px;
-}
+} */
 
 /* DROPDOWN MENU
 */
@@ -296,7 +297,7 @@ ul div {
     background-color: #F2EEE3;
     min-width: 160px;
     z-index: 1;
-    top: 35px;
+    top: 22px;
 
 }
 
@@ -306,13 +307,14 @@ ul div {
 }
 
 .item.dropdown {
-    margin-right: -250px;
-    justify-content: space-between;
+    margin-left: auto; /* Push "THE SURVEY" to the right */
+    margin: 10; /* Reset margins */
+    padding: 0; /* Reset paddings */
+    top: 0px;
 }
 
-.item.dropdown h9 {
-    justify-content: space-between;
-}
+
+
 
 
 
@@ -323,12 +325,15 @@ ul div {
     text-decoration: none;
     display: block;
     text-align: left;
+    z-index: 1;
+    top: 50px; /* Adjust this value to move the dropdown content down */
 }
 
 /* Change color of dropdown links on hover */
 .dropdown-content a:hover {
     background-color: rgba(214, 180, 100, 0.4); /* Adjusted alpha value to 0.8 */
 }
+
 
 /* 
     ARTICLE ALIGNMENT (flexbox added in larger view widths)
@@ -537,21 +542,6 @@ No media query for `xs` since this is the default */
         margin-right: 10px;       /* Add some right margin */
         /* Additional styles as needed */
     }
-    
-    
-    /* Hide menu toggle */
-    /* li.toggle {
-        /* hide menu bars (the toggle) 
-        display: none;
-    }
-    li.item {
-        display: flex !important;
-        align-items: center;
-        margin-left: auto;
-    }
-    li.item a {
-        margin-top: 0;
-    } */
 
     /* photos */
     .big-image {
