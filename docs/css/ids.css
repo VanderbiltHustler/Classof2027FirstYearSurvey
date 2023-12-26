@@ -59,13 +59,14 @@ h1, h11 { /* first headline */
     font-size: 128px;
 }
 
+
 h2 { /* second headline */
     padding: 20vh 0 0.75em;
     font-family: 'Georgia', serif;
     font-size: 45px;
     font-weight: 700;
     font-style: italic;
-    margin-top: -2.3em; /* Adjust the value to move the text up */
+    margin-top: 0em; /* Adjust the value to move the text up */
     line-height: 1; /* Reduce line height to bring the text up */
     padding: 0; /* Reset padding to remove any extra space */
 }
@@ -194,6 +195,8 @@ nav {
     width: 100%;
     z-index: 200;
     background-color: #F2EEE3; /* Set your initial background color */
+    border: 2px solid #F2EEE3; /* This adds a black border to the bottom of the nav */
+    padding-top: -0.5px;
 }
 
 
@@ -250,7 +253,7 @@ li.item {
     text-align: left;
 }
 li.item a {
-    margin-top: 0.2em; /* Adjust this value to move the "ABOUT" text up */
+    margin-top: 0em; /* Adjust this value to move the "ABOUT" text up */
 
 }
 li.toggle {
@@ -546,6 +549,10 @@ No media query for `xs` since this is the default */
         text-align: left;
         margin-left: 0; /* Potential issue: Missing 'px' or other unit */
         padding-left: 0;  /* If you want to ensure it's against the left edge, set padding-left to 0 */
+    }
+
+    nav {
+        padding-top: 0px;
     }
 
     nav ul {
