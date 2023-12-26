@@ -66,7 +66,7 @@ h2 { /* second headline */
     font-size: 45px;
     font-weight: 700;
     font-style: italic;
-    margin-top: 0em; /* Adjust the value to move the text up */
+    margin-top: -2.2em; /* Adjust the value to move the text up */
     line-height: 1; /* Reduce line height to bring the text up */
     padding: 0; /* Reset padding to remove any extra space */
 }
