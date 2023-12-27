@@ -553,6 +553,7 @@ No media query for `xs` since this is the default */
 
     nav {
         padding-top: 0px;
+        max-width: 100%;
     }
 
     nav ul {
