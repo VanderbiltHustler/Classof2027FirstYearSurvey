@@ -510,12 +510,24 @@ footer {
 No media query for `xs` since this is the default */
 
 /* Small devices (landscape phones, 576px and up) */
-@media (min-width: 576px) { 
+@media (max-width: 400px) { 
+    h1 { /* first headline */
+        padding: 35vh 0 0.75em;
+        font-size: 50px;
+        line-height: 50px;
+        overflow-wrap: break-word;
+    }
+
+    h2 { /* second headline */
+        padding: 10vh 0 0.75em;
+        margin-top: -5em; /* Adjust the value to move the text up */
+        font-size: 15px;
+    }
 
 }
 
 /* Medium devices (tablets, 768px and up) */
-@media (max-width: 768px) {
+@media (min-width: 401px) and (max-width: 768px) {
     .chart-container {
         max-width: 300px;
         margin: 0 auto; /* This will center the container if its width is less than the parent container */
