@@ -53,7 +53,7 @@
 header {
     /* add header image below */
     /* can use a file path before the photo is uploaded to ceo */
-    background: url('https://iili.io/JAaBKSS.jpg" alt="JAY4ZPV.jpg'); 
+    background: url('https://iili.io/JAQZh2s.jpg" alt="JAY4ZPV.jpg'); 
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center; /* adjusts image placement, can also be set as percentages */
@@ -163,7 +163,7 @@ No media query for `xs` since this is the default */
 
 @media (max-width: 1000px) {
   header {
-    background: url('https://iili.io/JAQZh2s.jpg');
+    background: url('https://iili.io/JAQZh2s.jpg alt="Four students lounge on Alumni Lawn on a sunny day with their backs to the camera. One student in the background sits with a laptop on a blue chair."');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;

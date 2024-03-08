@@ -50,7 +50,7 @@
 header {
     /* add header image below */
     /* can use a file path before the photo is uploaded to ceo */
-    background: url("https://iili.io/JAL6jSV.jpg"); 
+    background: url("https://iili.io/JAL6jSV.jpg alt='The front of the Commons Dining Hall.'"); 
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center top; /* adjusts image placement, can also be set as percentages */
