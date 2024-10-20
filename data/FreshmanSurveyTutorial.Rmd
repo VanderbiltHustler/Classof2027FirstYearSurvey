@@ -1,0 +1,501 @@
+---
+title: "Survey R Tutorial"
+author: "Katherine Oung, Vanderbilt University"
+date: "2023-10-15"
+output: html_document
+---
+
+##Survey
+
+338 responses, 1,622 total members of the freshman class
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can run each chunk individually by pressing the green arrow button on the top right or by highlighting code and pressing cmd+return
+
+You can embed an R code chunk like this:
+
+```{r - explain what the chunk does here}
+#this is a R chunk, where you can type in code
+```
+
+The first thing you need to do is load in the libraries as well as read in the data. make sure the path is correct to where the data file is on your computer. you don't need to specify the path if you've downloaded the data into the same folder as your r markdown file.
+
+```{r load in survey data}
+survey <- read.csv("freshman_survey_responses.csv") 
+library(tidyverse)
+library(weights)
+
+```
+
+take a look at the survey data columns and rows
+```{r}
+survey
+```
+
+Here are some examples of how you might edit the dataset given to make it usable for the graphs.
+
+Some important things to note:
+
+survey <- survey means that you are applying the changes onto the dataset variable. if you just write survey %>% in that line, you can view and run the code, but it will not save onto the dataset. if you write a different name, like survey_new <- survey, you will create a new variable that uses your changes, while the old variable is preserved. 
+
+tidyverses uses %>% (this is called "piping"), so whenever you have a new command, you put the pipe at the end of the line to join them together.
+
+mutate is the function that lets you rename parts of your data.
+
+you can use ifelse if you want to change things with two options, use case_when if there were more.
+
+```{r}
+states = c("Alabama", "Alaska", "American Samoa", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "District of Columbia", "Florida", "Georgia", "Guam", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Minor Outlying Islands", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Northern Mariana Islands", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Puerto Rico", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "U.S. Territories", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming") #create a list of states
+
+survey <- survey %>%
+  mutate(hometown_2 = ifelse(hometown %in% states, "Domestic", "International")) #first value is if, second is else
+
+survey %>%
+  select(hometown_2)
+domestic <- wpct(survey$hometown_2)
+
+write.csv(domestic, "Graph 7_1.csv", row.names = TRUE)
+```
+
+```{r renaming labels using case_when}
+survey <- survey %>%
+  mutate(greek_life = case_when(
+    greek_life == "Yes, I plan to participate in Panhellenic recruitment" ~ "Plans to participate in Greek Life",
+        greek_life == "Yes, I plan to participate in NPHC recruitment" ~ "Plans to participate in NPHC",
+    greek_life == "Not sure" ~ "Not sure",
+    greek_life == "No" ~ "Does not plan to participate in Greek Life",
+    greek_life == "Yes, I plan to participate in IFC recruitment" ~ "Plans to participate in Greek Life"
+  ))
+
+wpct(survey$greek_life)
+```
+Greek life by gender (how to do an analysis of two variables)
+```{r}
+
+greeklife_by_gender <- survey %>%
+  filter(!is.na(greek_life)) %>% #remove NA values if it is an optional question
+  select(greek_life, gender) %>% #select the two variables you are working with
+  group_by(gender, greek_life) %>% #seperate counts by gender and greek life response
+  count() %>% #making this catagorical variable into a numerical count
+  group_by(gender) %>% #seperate percentages by gender
+  mutate(prop = n / sum(n)) #find percentage
+
+print(greeklife_by_gender)
+
+```
+
+seperating values by commas - if you have multiple values in a row and need to seperate them
+```{r}
+survey_race_split<- survey %>%
+  select(race)
+
+survey_race_split <- separate_rows(survey_race_split, race, sep = ", ")
+
+wpct(survey_race_split$race)
+
+```
+College life questions
+
+College applied to/college switch
+
+```{r}
+college_accepted <- wpct(survey$college_accepted, na.rm=TRUE)
+
+survey_college <- survey %>%
+  mutate(college_switch = case_when(
+    college_switch == "No" ~ college_accepted,
+        college_switch == "Yes, Peabody" ~ "Peabody College of Education and Human Development",
+    college_switch == "Yes, Blair" ~ "Blair School of Music",
+    college_switch == "Yes, A&S" ~ "College of Arts of Science",
+    college_switch == "Yes, Engineering" ~ "School of Engineering"
+  ))
+
+survey_college %>% 
+  select(college_switch)
+
+college_switch <- wpct(survey_college$college_switch, na.rm=TRUE)
+
+write.csv(college_accepted, "Graph 21_1.csv", row.names = TRUE)
+write.csv(college_switch, "Graph 22_2.csv", row.names = TRUE)
+
+
+```
+
+Where did students switch from?
+```{r}
+peabody_switch <- survey %>%
+  filter(college_switch == "Yes, Peabody")
+
+peabody_switch_graph <- wpct(peabody_switch$college_accepted, na.rm=TRUE)
+
+write.csv(peabody_switch_graph, "Graph 21_3.csv", row.names = TRUE)
+
+```
+
+```{r}
+blair_switch <- survey %>%
+  filter(college_accepted == "Blair School of Music") %>%
+  mutate(switch_from_blair =(ifelse(grepl("Yes", college_switch), "Switch", "Not switch"))) %>%
+  filter(switch_from_blair == "Switch")
+
+blair_switch_graph <- wpct(blair_switch$college_accepted, na.rm=TRUE)
+
+```
+
+pre-prof track
+```{r}
+pre_prof <- wpct(survey$pre_professional, na.rm=TRUE)
+write.csv(pre_prof, "Graph 22.csv", row.names = TRUE)
+
+
+```
+
+
+commons house lived in/commons house wish you lived in
+```{r}
+commons_house_live <- wpct(survey$commons_house, na.rm=TRUE)
+write.csv(commons_house_live, "Graph 23.csv", row.names = TRUE)
+
+commons_house_wish <- wpct(survey$commons_house_wish, na.rm=TRUE)
+write.csv(commons_house_wish, "Graph 23_2.csv", row.names = TRUE)
+
+```
+Where do people live who wish they lived in Hank?
+```{r}
+hank_wish <- survey %>%
+  filter(commons_house_wish == "Hank Ingram") %>%
+  filter(commons_house != "Hank Ingram")
+
+commons_house_wish_hank <- wpct(hank_wish$commons_house, na.rm=TRUE)
+write.csv(commons_house_wish_hank, "Graph 23_3.csv", row.names = TRUE)
+```
+
+financial aid amounts
+```{r}
+fin_aid <- wpct(survey$financial_aid, na.rm=TRUE)
+write.csv(fin_aid, "Graph 24.csv", row.names = TRUE)
+
+```
+
+merit scholar
+```{r}
+merit_scholar <- wpct(survey$merit_scholar, na.rm=TRUE)
+write.csv(merit_scholar, "Graph 25.csv", row.names = TRUE)
+
+```
+
+household income/merit scholar
+```{r}
+meritscholar_by_income <- survey %>%
+  select(household_income,merit_scholar) %>%
+  group_by(household_income,merit_scholar) %>%
+  count() %>%
+  group_by(household_income) %>%
+  mutate(prop = n / sum(n))
+
+write.csv(meritscholar_by_income, "Graph 26.csv", row.names = TRUE)
+
+```
+
+Greek life by gender
+```{r}
+greeklife_by_gender <- survey %>%
+  select(greek_life, gender) %>% #select the two variables you are working with
+  group_by(gender, greek_life) %>% #seperate counts by gender and greek life response
+  count() %>% #making this catagorical variable into a numerical count
+  group_by(gender) %>% #seperate percentages by gender
+  mutate(prop = n / sum(n)) #find percentage
+
+write.csv(greeklife_by_gender, "Graph 27.csv", row.names = TRUE)
+
+```
+
+Greek life by race
+```{r}
+
+survey_race_split <- survey %>%
+  mutate(race = strsplit(as.character(race), ", ")) %>%
+  unnest(race)
+
+greeklife_by_race <- survey_race_split %>%
+  select(greek_life, race) %>% #select the two variables you are working with
+  group_by(race, greek_life) %>% #seperate counts by gender and greek life response
+  count() %>% #making this catagorical variable into a numerical count
+  group_by(race) %>% #seperate percentages by gender
+  mutate(prop = n / sum(n)) #find percentage
+
+write.csv(greeklife_by_race, "Graph 28.csv", row.names = TRUE)
+```
+
+Admin assistance/household income
+
+```{r}
+survey %>%
+  select(admissions_assistance, household_income)
+
+survey_assistance_split <- survey %>%
+  mutate(admissions_assistance = strsplit(as.character(admissions_assistance), ", ")) %>%
+  unnest(admissions_assistance) %>%
+  select(admissions_assistance, household_income)
+
+assistance_by_income <- survey_assistance_split %>%
+  select(admissions_assistance, household_income) %>% #select the two variables you are working with
+  group_by(household_income, admissions_assistance) %>% #seperate counts by gender and greek life response
+  count() %>% #making this catagorical variable into a numerical count
+  group_by(household_income) %>% #seperate percentages by gender
+  mutate(prop = n / sum(n)) #find percentage
+
+write.csv(assistance_by_income, "Graph 18.csv", row.names = TRUE)
+
+```
+
+```{r}
+survey %>%
+  select(admissions_assistance, household_income)
+
+assistance_by_income <- survey %>%
+  select(admissions_assistance, household_income) %>% #select the two variables you are working with
+  group_by(household_income, admissions_assistance) %>% #seperate counts by gender and greek life response
+  count() %>% #making this catagorical variable into a numerical count
+  group_by(household_income) %>% #seperate percentages by gender
+  mutate(prop = n / sum(n)) #find percentage
+
+
+```
+SAT score
+```{r}
+survey %>%
+  filter(!is.na(sat_score)) %>%
+  select(sat_score)
+
+percentiles <- survey %>%
+  summarise(
+    percentile_50 = quantile(sat_score, 0.50, na.rm = TRUE),
+    percentile_90 = quantile(sat_score, 0.90, na.rm = TRUE)
+  ) %>%
+  group_by(legacy)
+
+survey %>%
+  filter(!is.na(act_score)) %>%
+  select(act_score)
+
+percentiles <- survey %>%
+  summarise(
+    percentile_50 = quantile(act_score, 0.50, na.rm = TRUE),
+    percentile_90 = quantile(act_score, 0.90, na.rm = TRUE)
+  )
+
+```
+SAT score / legacy
+```{r}
+survey %>%
+  filter(legacy_binary == "Yes") %>%
+    summarise(
+    percentile_50 = quantile(sat_score, 0.50, na.rm = TRUE),
+    percentile_90 = quantile(sat_score, 0.90, na.rm = TRUE)
+  )
+
+survey %>%
+  filter(legacy_binary == "No") %>%
+    summarise(
+    percentile_50 = quantile(sat_score, 0.50, na.rm = TRUE),
+    percentile_90 = quantile(sat_score, 0.90, na.rm = TRUE)
+  )
+
+survey %>%
+  filter(legacy_binary == "Yes") %>%
+    summarise(
+    percentile_50 = quantile(act_score, 0.50, na.rm = TRUE),
+    percentile_90 = quantile(act_score, 0.90, na.rm = TRUE)
+  )
+
+survey %>%
+  filter(legacy_binary == "No") %>%
+    summarise(
+    percentile_50 = quantile(act_score, 0.50, na.rm = TRUE),
+    percentile_90 = quantile(act_score, 0.90, na.rm = TRUE)
+  )
+```
+Political ideology
+```{r}
+political_ideology <- wpct(survey$political_ideology, na.rm=TRUE)
+write.csv(political_ideology, "Graph 29.csv", row.names = TRUE)
+```
+
+
+Voting
+```{r}
+vote <- wpct(survey$vote, na.rm=TRUE)
+write.csv(vote, "Graph 30.csv", row.names = TRUE)
+```
+
+Divestment
+```{r}
+divest <- wpct(survey$divest, na.rm=TRUE)
+write.csv(divest, "Graph 31-1.csv", row.names = TRUE)
+```
+
+Abolish Greek Life
+```{r}
+abolish_gl <- wpct(survey$abolish_gl, na.rm=TRUE)
+write.csv(abolish_gl, "Graph 31-2.csv", row.names = TRUE)
+```
+
+Admin stances
+```{r}
+administration_politics <- wpct(survey$administration_politics, na.rm=TRUE)
+write.csv(administration_politics, "Graph 31-3.csv", row.names = TRUE)
+```
+
+Abortion
+```{r}
+abortion <- wpct(survey$abortion, na.rm=TRUE)
+write.csv(abortion, "Graph 32-1.csv", row.names = TRUE)
+```
+
+AA
+```{r}
+affirmative_action <- wpct(survey$affirmative_action, na.rm=TRUE)
+write.csv(affirmative_action, "Graph 32-2.csv", row.names = TRUE)
+```
+
+Legacy
+```{r}
+legacy_opinion <- wpct(survey$legacy_opinion, na.rm=TRUE)
+write.csv(legacy_opinion, "Graph 32-3.csv", row.names = TRUE)
+```
+
+Gender-affirming care
+```{r}
+gender_affirming_care <- wpct(survey$gender_affirming_care, na.rm=TRUE)
+write.csv(gender_affirming_care, "Graph 32-4.csv", row.names = TRUE)
+```
+
+Gun control
+```{r}
+gun_control <- wpct(survey$gun_control, na.rm=TRUE)
+write.csv(gun_control, "Graph 32-5.csv", row.names = TRUE)
+```
+
+Political Issues vs Political ideology
+```{r}
+survey_abortion <- survey %>%
+  select(abortion, political_ideology) %>%
+  mutate(abortion_support = ifelse(abortion >= 5, "Support", "Oppose"),  # Converted to numeric
+         political_ideology_three = case_when(
+           political_ideology %in% c(1, 2, 3) ~ "Liberal",
+           political_ideology %in% c(4) ~ "Neutral",
+           political_ideology %in% c(5, 6, 7) ~ "Conservative",
+           TRUE ~ as.character(political_ideology)  # Handle other cases
+         ))
+
+# Create abortion_support_by_ideology dataframe
+abortion_support_by_ideology <- survey_abortion %>%
+  select(abortion_support, political_ideology_three) %>%
+  group_by(political_ideology_three, abortion_support) %>%
+  count() %>%
+  group_by(political_ideology_three) %>%
+  mutate(prop = n / sum(n))
+```
+
+```{r}
+survey_aa <- survey %>%
+  select(affirmative_action, political_ideology) %>%
+  mutate(affirmative_action_support = ifelse(as.integer(affirmative_action) >= 5, "Support", "Oppose"),  # Converted to numeric
+         political_ideology_three = case_when(
+           political_ideology %in% c(1, 2, 3) ~ "Liberal",
+           political_ideology %in% c(4) ~ "Neutral",
+           political_ideology %in% c(5, 6, 7) ~ "Conservative",
+           TRUE ~ as.character(political_ideology)  # Handle other cases
+         ))
+
+# Create abortion_support_by_ideology dataframe
+aa_support_by_ideology <- survey_aa %>%
+  select(affirmative_action_support, political_ideology_three) %>%
+  group_by(political_ideology_three, affirmative_action_support) %>%
+  count() %>%
+  group_by(political_ideology_three) %>%
+  mutate(prop = n / sum(n))
+
+```
+
+```{r}
+survey_legacy <- survey %>%
+  select(legacy_opinion, political_ideology) %>%
+  mutate(legacy_opinion_support = ifelse(as.integer(legacy_opinion) >= 5, "Support", "Oppose"),  # Converted to numeric
+         political_ideology_three = case_when(
+           political_ideology %in% c(1, 2, 3) ~ "Liberal",
+           political_ideology %in% c(4) ~ "Neutral",
+           political_ideology %in% c(5, 6, 7) ~ "Conservative",
+           TRUE ~ as.character(political_ideology)  # Handle other cases
+         ))
+
+# Create abortion_support_by_ideology dataframe
+aa_support_by_ideology <- survey_legacy %>%
+  select(legacy_opinion_support, political_ideology_three) %>%
+  group_by(political_ideology_three, legacy_opinion_support) %>%
+  count() %>%
+  group_by(political_ideology_three) %>%
+  mutate(prop = n / sum(n))
+
+```
+
+```{r}
+survey_hospitals <- survey %>%
+  select(gender_affirming_care, political_ideology) %>%
+  mutate(gender_affirming_care_support = ifelse(as.integer(gender_affirming_care) >= 5, "Support", "Oppose"),  # Converted to numeric
+         political_ideology_three = case_when(
+           political_ideology %in% c(1, 2, 3) ~ "Liberal",
+           political_ideology %in% c(4) ~ "Neutral",
+           political_ideology %in% c(5, 6, 7) ~ "Conservative",
+           TRUE ~ as.character(political_ideology)  # Handle other cases
+         ))
+
+# Create abortion_support_by_ideology dataframe
+aa_support_by_ideology <- survey_hospitals %>%
+  select(gender_affirming_care_support, political_ideology_three) %>%
+  group_by(political_ideology_three, gender_affirming_care_support) %>%
+  count() %>%
+  group_by(political_ideology_three) %>%
+  mutate(prop = n / sum(n))
+
+```
+
+```{r}
+survey_guns <- survey %>%
+  select(gun_control, political_ideology) %>%
+  mutate(gun_control_support = ifelse(as.integer(gun_control) >= 5, "Support", "Oppose"),  # Converted to numeric
+         political_ideology_three = case_when(
+           political_ideology %in% c(1, 2, 3) ~ "Liberal",
+           political_ideology %in% c(4) ~ "Neutral",
+           political_ideology %in% c(5, 6, 7) ~ "Conservative",
+           TRUE ~ as.character(political_ideology)  # Handle other cases
+         ))
+
+# Create abortion_support_by_ideology dataframe
+aa_support_by_ideology <- survey_guns %>%
+  select(gun_control_support, political_ideology_three) %>%
+  group_by(political_ideology_three, gun_control_support) %>%
+  count() %>%
+  group_by(political_ideology_three) %>%
+  mutate(prop = n / sum(n))
+
+```
+
+```{r}
+legacy_support <- survey %>%
+  select(legacy_opinion, legacy_binary) %>%
+  group_by(legacy_binary, legacy_opinion) %>%
+  count() %>%
+  group_by(legacy_binary) %>%
+  mutate(prop = n / sum(n))
+
+```
+
+
+
+
+
